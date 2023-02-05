@@ -1,0 +1,103 @@
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+public class Script14   {
+	public static  void main(String[] args) throws InterruptedException  {
+  
+		//create object for=chrome driver to launch browser
+				ChromeDriver driver=new ChromeDriver();
+        
+				//maximize the chrome browser
+				driver.manage().window().maximize();
+        
+				//go to facebook page
+				driver.get("https://www.facebook.com/");
+        
+				//sleep for 3 seconds
+				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        
+				//find out search bar
+				WebElement search=driver.findElement(By.cssSelector("a[data-testid='open-registration-form-button']"));
+        
+				//type on the search bar"
+				search.click();
+        
+				//sleep for 3 seconds
+				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        
+				//find out first name
+				WebElement first=driver.findElement(By.name("firstname"));
+        
+				//pass first name
+				first.sendKeys("bhanu prakash");
+        
+				//find out last name
+				WebElement last=driver.findElement(By.name("lastname"));
+        
+				//pass last name
+				last.sendKeys("bathala");
+        
+				//find out email
+				WebElement email=driver.findElement(By.name("reg_email__"));
+        
+				//pass email address
+				email.sendKeys("bbp@gmail.com");
+        
+				//sleep for 3 seconds
+				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        
+        //locate confirmation email and send email
+				WebElement email1=driver.findElement(By.name("reg_email_confirmation__"));
+				email1.sendKeys("bbp@gmail.com");
+        
+				//find out password 
+				WebElement password=driver.findElement(By.name("reg_passwd__"));
+        
+				//pass password
+				password.sendKeys("bbp@bhnu116");
+        
+				//select day in select bar 
+				WebElement date=driver.findElement(By.id("day"));
+        
+				//create select class object to select day
+				Select sel1=new Select(date);
+        
+				//pass date in index
+				sel1.selectByIndex(3);
+        
+				//find month
+				WebElement month=driver.findElement(By.id("month"));
+        
+				//create a select object to select month
+				Select sel2=new Select(month);
+        
+				//pass month value
+				sel2.selectByValue("8");
+        
+				//find year
+				WebElement year=driver.findElement(By.id("year"));
+        
+					//create a select object to select year
+				Select sel3=new Select(year);
+        
+				//pass year in visible text
+				sel3.selectByVisibleText("1999");
+        
+				//find radio buttons 
+				//create an xpath to select the radio button
+				WebElement radio=driver.findElement(By.xpath("//span[@class='_5k_2 _5dba']/input[preceding-sibling::label[text()='Male']]"));
+        
+				//check weather the radio button is selected or not
+				System.out.println("before selected "+radio.isSelected());
+        
+				//if not selected check and select
+				if(!(radio.isSelected())){
+					radio.click();
+				}
+        
+				//check weather the radio button is selected after clicking 
+				System.out.println("after selected "+radio.isSelected());			
+	}
+}
